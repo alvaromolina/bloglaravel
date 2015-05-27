@@ -5,5 +5,11 @@ Vista de articles:
 	@foreach ($articles as $article)
 		<h2><a href="/articles/{{$article->id}}">{{$article->title}}</a></h2>
 		<p>{{$article->body}}</p>
+		<a href="/articles/{{$article->id}}/edit">Editar</a>
+		{!! Form::open(array('route' => array('articles.destroy', $article->id), 'method' => 'delete')) !!}
+		<button type="submit" class="btn btn-danger btn-mini">Borrar</button>
+		{!! Form::close() !!}
 	@endforeach
+
+	<a href="/articles/create">Nuevo</a>
 @stop

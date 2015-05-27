@@ -4,7 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
 
-use Illuminate\Http\Request;
+use Request;
 
 class ArticlesController extends Controller {
 
@@ -26,7 +26,7 @@ class ArticlesController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('articles.create');
 	}
 
 	/**
@@ -34,9 +34,11 @@ class ArticlesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$input = $request::all();
+		Article::create($input);
+		return redirect('articles');
 	}
 
 	/**
@@ -60,7 +62,8 @@ class ArticlesController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$article = Article::find($id);
+		return view('articles.edit', compact('article'));
 	}
 
 	/**
@@ -69,9 +72,12 @@ class ArticlesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, Request $request)
 	{
-		//
+		$article = Article::find($id);
+		$input = $request::all();
+		$article->update($input);
+		return redirect('articles');
 	}
 
 	/**
@@ -82,7 +88,8 @@ class ArticlesController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		Article::destroy($id);
+		return redirect('articles');
 	}
 
 }
