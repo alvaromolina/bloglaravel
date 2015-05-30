@@ -11,10 +11,11 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'ArticlesController@index');
 
 Route::get('home', 'HomeController@index');
 
+Route::resource('comments','CommentsController');
 Route::resource('articles','ArticlesController');
 
 Route::controllers([

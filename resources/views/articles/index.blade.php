@@ -9,6 +9,23 @@ Vista de articles:
 		{!! Form::open(array('route' => array('articles.destroy', $article->id), 'method' => 'delete')) !!}
 		<button type="submit" class="btn btn-danger btn-mini">Borrar</button>
 		{!! Form::close() !!}
+		Usuario: {{($article->user == null) ? 'NA' : $article->user->email}}
+		<br>
+		@foreach ($article->comments as $comment)
+			{{$comment->body}}
+			<br>
+		@endforeach
+		{!! Form::open(['url'=>'comments']) !!}
+		<br>
+		{!! Form::label('name','Comentario:') !!}
+		{!! Form::text('body') !!}
+		{!! Form::hidden('article_id', $article->id) !!}
+		<br><br>
+		{!! Form::submit('Guardar') !!}
+		{!! Form::close() !!}
+
+
+
 	@endforeach
 
 	<a href="/articles/create">Nuevo</a>

@@ -1,19 +1,13 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Requests\ArticleRequest;
+use App\Comment;
 
 use App\Http\Controllers\Controller;
-use App\Article;
-use Auth;
 
+use Request;
 
-class ArticlesController extends Controller {
-
-
-	public function __construct(){
-		$this->middleware('auth');
-	}
+class CommentsController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -22,8 +16,7 @@ class ArticlesController extends Controller {
 	 */
 	public function index()
 	{
-		$articles = Article::all();
-		return view('articles.index', compact('articles'));
+		//
 	}
 
 	/**
@@ -33,7 +26,7 @@ class ArticlesController extends Controller {
 	 */
 	public function create()
 	{
-		return view('articles.create');
+		//
 	}
 
 	/**
@@ -41,11 +34,10 @@ class ArticlesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(ArticleRequest $request)
+	public function store(Request $request)
 	{
-		$input = $request->all();
-		$article = new Article($input);
-		Auth::user()->articles()->save($article);
+		$input = $request::all();
+		Comment::create($input);
 		return redirect('articles');
 	}
 
@@ -57,9 +49,7 @@ class ArticlesController extends Controller {
 	 */
 	public function show($id)
 	{
-		$article = Article::find($id);
-
-		return view('articles.show', compact('article'));
+		//
 	}
 
 	/**
@@ -70,8 +60,7 @@ class ArticlesController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$article = Article::find($id);
-		return view('articles.edit', compact('article'));
+		//
 	}
 
 	/**
@@ -80,12 +69,9 @@ class ArticlesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id, Request $request)
+	public function update($id)
 	{
-		$article = Article::find($id);
-		$input = $request::all();
-		$article->update($input);
-		return redirect('articles');
+		//
 	}
 
 	/**
@@ -96,8 +82,7 @@ class ArticlesController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		Article::destroy($id);
-		return redirect('articles');
+		//
 	}
 
 }
