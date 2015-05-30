@@ -15,8 +15,11 @@ Route::get('/', 'ArticlesController@index');
 
 Route::get('home', 'HomeController@index');
 
+Route::get('/articles/like/{id}', 'ArticlesController@like');
+
 Route::resource('comments','CommentsController');
 Route::resource('articles','ArticlesController');
+
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

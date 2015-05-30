@@ -15,6 +15,15 @@ class ArticlesController extends Controller {
 		$this->middleware('auth');
 	}
 
+
+	public function like($id)
+	{	
+		$article = Article::find($id);
+		$article->likes += 1;
+		$article->save();
+		return redirect('articles');
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *

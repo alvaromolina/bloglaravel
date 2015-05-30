@@ -11,6 +11,9 @@ Vista de articles:
 		{!! Form::close() !!}
 		Usuario: {{($article->user == null) ? 'NA' : $article->user->email}}
 		<br>
+		Likes: {{$article->likes}}
+		<br>
+		<a href="/articles/like/{{$article->id}}">Like</a>
 		@foreach ($article->comments as $comment)
 			{{$comment->body}}
 			<br>
